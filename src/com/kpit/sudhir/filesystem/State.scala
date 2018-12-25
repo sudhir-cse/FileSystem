@@ -6,7 +6,12 @@ class State(val rootDir: Directory,
             val workingDir: Directory,
             val prevCmdResult: String) {
 
-  def show = print(State.SHELL_TOKEN)
+  def show = {
+    print(prevCmdResult)
+    print(State.SHELL_TOKEN)
+  }
+
+  def setMessage(message: String): State = State(rootDir, workingDir, message)
 }
 
 object State {

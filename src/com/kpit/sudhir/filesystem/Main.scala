@@ -2,12 +2,16 @@ package com.kpit.sudhir.filesystem
 
 import java.util.Scanner
 
+import com.kpit.sudhir.elements.Directory
+
 object Main extends App {
   val scanner = new Scanner(System.in)
+  val root = Directory.ROOT
+  val state = State(root, root)
 
   while (true) {
-    print("$ ")
-    val command = scanner.nextLine()
-    println(command)
+    state.show
+    val inputCommand = scanner.nextLine()
+    println(inputCommand)
   }
 }
