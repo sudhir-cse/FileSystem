@@ -6,5 +6,25 @@ trait Command {
 }
 
 object Command {
-  def from(cmdString: String): Command = new CmdNotFound
+
+  val MKDIR = "mkdir"
+
+  def from(cmdString: String): Command = {
+    val tokens = cmdString.split(" ")
+    if (cmdString.isEmpty || tokens.isEmpty) emptyCommand
+    else if (tokens(0).equals(MKDIR)) {
+      if (tokens.length != 2) incorrectArguments(MKDIR)
+      else new Mkdir(tokens(1))
+    } else new CmdNotFound
+  }
+
+  def emptyCommand = new Command {
+    override def apply(state: State): State = state
+  }
+
+  def incorrectArguments(command: String): Command = new Command {
+    override def apply(state: State): State =
+      state.setMessage(
+        s"$command: has invalid number of arguments. It accepts exactly one argument.")
+  }
 }
