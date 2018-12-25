@@ -7,23 +7,31 @@ class Directory(override val dirName: String,
 
   override def asDirectory: Directory = this
 
+  def findDescendant(path: List[String]): Directory = {
+    if (path.isEmpty) this
+    else findEntry(path.head).asDirectory.findDescendant(path.tail)
+  }
+
+  def hasEntry(name: String): Boolean = findEntry(name) != null
+
   def findEntry(name: String): Directory = {
     val fsEntries =
       contents.filter(fsEntry => fsEntry.dirName.equals(name))
     if (fsEntries.isEmpty) null
-    else (Directory)(fsEntries.head)
+    else fsEntries.head.asDirectory
   }
 
-  def replaceEntry(entryName: String, newEntry: Directory): Directory = ???
-
-  def hasEntry(name: String): Boolean = ???
+  def replaceEntry(entryName: String, newEntry: Directory): Directory =
+    new Directory(
+      dirName,
+      parentPath,
+      contents.filter(e => !e.dirName.equals(entryName)) :+ newEntry)
 
   def allDirNamesInPath: List[String] =
-    path.substring(1).split(Directory.DELIMITER).toList
+    path.substring(1).split(Directory.DELIMITER).toList.filter(e => !e.isEmpty)
 
-  def findDescendant(path: List[String]): Directory = ???
-
-  def addEntry(newEntry: FileSystemEntry): Directory = ???
+  def addEntry(newEntry: FileSystemEntry): Directory =
+    new Directory(dirName, parentPath, contents :+ newEntry)
 }
 
 object Directory {

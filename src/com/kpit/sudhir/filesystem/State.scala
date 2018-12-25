@@ -21,5 +21,4 @@ object State {
             workingDir: Directory,
             prevCmdResult: String = "") =
     new State(rootDir, workingDir, prevCmdResult)
-
 }
