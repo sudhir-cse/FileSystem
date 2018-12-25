@@ -7,7 +7,7 @@ class State(val rootDir: Directory,
             val prevCmdResult: String) {
 
   def show = {
-    print(prevCmdResult)
+    println(prevCmdResult)
     print(State.SHELL_TOKEN)
   }
 
