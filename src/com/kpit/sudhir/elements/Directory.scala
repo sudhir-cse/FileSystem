@@ -3,7 +3,11 @@ package com.kpit.sudhir.elements
 class Directory(override val dirName: String,
                 override val parentPath: String,
                 val contents: List[FileSystemEntry])
-    extends FileSystemEntry(dirName, parentPath) {}
+    extends FileSystemEntry(dirName, parentPath) {
+
+  def hasEntry(name: String): Boolean = ???
+
+}
 
 object Directory {
   val ROOT_PATH = "/"

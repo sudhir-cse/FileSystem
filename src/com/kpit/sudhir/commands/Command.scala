@@ -6,7 +6,6 @@ trait Command {
 }
 
 object Command {
-
   val MKDIR = "mkdir"
 
   def from(cmdString: String): Command = {
