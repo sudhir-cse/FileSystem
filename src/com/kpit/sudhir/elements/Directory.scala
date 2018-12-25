@@ -7,6 +7,13 @@ class Directory(override val dirName: String,
 
   override def asDirectory: Directory = this
 
+  def findEntry(name: String): Directory = {
+    val fsEntries =
+      contents.filter(fsEntry => fsEntry.dirName.equals(name))
+    if (fsEntries.isEmpty) null
+    else (Directory)(fsEntries.head)
+  }
+
   def replaceEntry(entryName: String, newEntry: Directory): Directory = ???
 
   def hasEntry(name: String): Boolean = ???
@@ -17,8 +24,6 @@ class Directory(override val dirName: String,
   def findDescendant(path: List[String]): Directory = ???
 
   def addEntry(newEntry: FileSystemEntry): Directory = ???
-
-  def findEntry(name: String): Directory = ???
 }
 
 object Directory {
