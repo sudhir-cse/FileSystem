@@ -7,7 +7,8 @@ class Directory(override val dirName: String,
 
   def hasEntry(name: String): Boolean = ???
 
-  def allDirNamesInPath: List[String] = ???
+  def allDirNamesInPath: List[String] =
+    path.substring(1).split(Directory.DELIMITER).toList
 
   def findDescendant(path: List[String]): Directory = ???
 
