@@ -5,6 +5,10 @@ class Directory(override val dirName: String,
                 val contents: List[FileSystemEntry])
     extends FileSystemEntry(dirName, parentPath) {
 
+  override def asDirectory: Directory = this
+
+  def replaceEntry(entryName: String, newEntry: Directory): Directory = ???
+
   def hasEntry(name: String): Boolean = ???
 
   def allDirNamesInPath: List[String] =
@@ -12,6 +16,9 @@ class Directory(override val dirName: String,
 
   def findDescendant(path: List[String]): Directory = ???
 
+  def addEntry(newEntry: FileSystemEntry): Directory = ???
+
+  def findEntry(name: String): Directory = ???
 }
 
 object Directory {
