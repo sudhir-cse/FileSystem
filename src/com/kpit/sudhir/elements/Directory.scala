@@ -1,9 +1,9 @@
 package com.kpit.sudhir.elements
 
-class Directory(override val dirName: String,
+class Directory(override val name: String,
                 override val parentPath: String,
                 val contents: List[FileSystemEntry])
-    extends FileSystemEntry(dirName, parentPath) {
+    extends FileSystemEntry(name, parentPath) {
 
   override def asDirectory: Directory = this
 
@@ -18,22 +18,21 @@ class Directory(override val dirName: String,
 
   def findEntry(name: String): Directory = {
     val fsEntries =
-      contents.filter(fsEntry => fsEntry.dirName.equals(name))
+      contents.filter(fsEntry => fsEntry.name.equals(name))
     if (fsEntries.isEmpty) null
     else fsEntries.head.asDirectory
   }
 
   def replaceEntry(entryName: String, newEntry: Directory): Directory =
-    new Directory(
-      dirName,
-      parentPath,
-      contents.filter(e => !e.dirName.equals(entryName)) :+ newEntry)
+    new Directory(name,
+                  parentPath,
+                  contents.filter(e => !e.name.equals(entryName)) :+ newEntry)
 
   def allDirNamesInPath: List[String] =
     path.substring(1).split(Directory.DELIMITER).toList.filter(e => !e.isEmpty)
 
   def addEntry(newEntry: FileSystemEntry): Directory =
-    new Directory(dirName, parentPath, contents :+ newEntry)
+    new Directory(name, parentPath, contents :+ newEntry)
 }
 
 object Directory {

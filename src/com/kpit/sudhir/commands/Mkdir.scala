@@ -39,7 +39,7 @@ class Mkdir(val name: String) extends Command {
     else {
       val oldEntry = currentDirectory.findEntry(path.head).asDirectory
       currentDirectory.replaceEntry(
-        oldEntry.dirName,
+        oldEntry.name,
         updateStructure(oldEntry, path.tail, newEntry))
     }
   }

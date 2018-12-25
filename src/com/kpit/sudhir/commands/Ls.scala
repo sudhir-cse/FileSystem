@@ -14,7 +14,7 @@ class Ls extends Command {
     if (contents.isEmpty) ""
     else {
       val entry = contents.head
-      s"${entry.dirName} [${entry.getType}]\n${beautifyOutput(contents.tail)}"
+      s"${entry.name} [${entry.getType}]\n${beautifyOutput(contents.tail)}"
     }
   }
 }
