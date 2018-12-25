@@ -7,6 +7,10 @@ class Directory(override val dirName: String,
 
   def hasEntry(name: String): Boolean = ???
 
+  def allDirNamesInPath: List[String] = ???
+
+  def findDescendant(path: List[String]): Directory = ???
+
 }
 
 object Directory {
