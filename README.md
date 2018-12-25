@@ -1,5 +1,11 @@
 # FileSystem Interface
-> Implements simple FileSystem commands. Supported commands: pwd, ls and mkdir.
+> Implements simple FileSystem commands.
+>
+> Supported commands 
+> * *pwd*
+> * *ls*
+> * *mkdir*
+> * *NotFound*
 
 ## Development Env
 
