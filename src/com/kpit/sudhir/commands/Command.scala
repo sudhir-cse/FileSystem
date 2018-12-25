@@ -8,15 +8,18 @@ trait Command {
 object Command {
   val MKDIR = "mkdir"
   val LS = "ls"
+  val PWD = "pwd"
 
   def from(cmdString: String): Command = {
     val tokens = cmdString.split(" ")
     if (cmdString.isEmpty || tokens.isEmpty) emptyCommand
-    else if (tokens(0).equals(MKDIR)) {
+    else if (MKDIR.equals(tokens(0))) {
       if (tokens.length != 2) incorrectArguments(MKDIR)
       else new Mkdir(tokens(1))
     } else if (LS.equals(tokens(0))) {
       new Ls
+    } else if (PWD.equals(tokens(0))) {
+      new Pwd
     } else new CmdNotFound
   }
 
