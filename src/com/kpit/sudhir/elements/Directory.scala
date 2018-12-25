@@ -7,6 +7,8 @@ class Directory(override val dirName: String,
 
   override def asDirectory: Directory = this
 
+  override def getType: String = "Directory"
+
   def findDescendant(path: List[String]): Directory = {
     if (path.isEmpty) this
     else findEntry(path.head).asDirectory.findDescendant(path.tail)
